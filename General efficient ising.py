@@ -4,7 +4,7 @@ import multiprocessing
 from tqdm import tqdm
 
 # Parameters
-N = 20
+N = 50
 STEP = (N**2) * 100
 temp_step = 0.01
 T_plus = 0.1
