@@ -56,6 +56,10 @@ def Ising_model_T_parallel(T_range):
                 pbar.update(1)
     return average_magnetizations
 
+
+#socebitibility
+...
+
 # Run the parallel processing function
 average_magnetizations = Ising_model_T_parallel(T_range)
 
@@ -76,6 +80,8 @@ axes[1].plot(np.arange(STEP - int(STEP * burn_value)), magnetization_steps)
 axes[1].set_xlabel("Step")
 axes[1].set_ylabel("Magnetization")
 axes[1].set_title(f'Magnetization vs. Step at T = {T_plus}')
+
+
 
 plt.tight_layout()
 plt.show()
