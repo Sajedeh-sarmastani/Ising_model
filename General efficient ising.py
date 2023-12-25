@@ -57,8 +57,6 @@ def Ising_model_T_parallel(T_range):
     return average_magnetizations
 
 
-#socebitibility
-...
 
 # Run the parallel processing function
 average_magnetizations = Ising_model_T_parallel(T_range)
