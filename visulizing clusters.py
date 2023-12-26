@@ -37,8 +37,6 @@ def Ising_model(N, T, J ,step):
 
 
 
-    # np.save(f"results/{i}.npy", spin)
-
 fig, axes = plt.subplots(10, 2, figsize=(15, 50)) 
 for i in range(10):  
     N = 100 * (i + 1)  
