@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing
 from tqdm import tqdm
+import random
 
 # Parameters
 N = 50
