@@ -9,6 +9,7 @@ STEP = (N**2) * 100
 temp_step = 0.01
 T_plus = 0.1
 burn_value = 0.2
+burn_in = int(STEP * burn_value)
 T_range = np.arange(5, 0.0001, -temp_step)
 spin = np.random.choice([1, -1], size=(N, N))
 
@@ -24,7 +25,6 @@ def optimized_Metropolis_Algorithm(i, j, T, J, spin, N):
 
 # Optimized Ising model
 def optimized_Ising_model(N, T, J, STEP, spin):
-    burn_in = int(STEP * burn_value)
     Magnetization_array = np.zeros(STEP - burn_in)
 
     # Batch generating random indices
@@ -56,15 +56,21 @@ def Ising_model_T_parallel(T_range):
                 pbar.update(1)
     return average_magnetizations
 
+#autocorrelation
+def autocorrelation(magnetization_array):
+    n = len(magnetization_array)
+    mean_mag = np.mean(magnetization_array)
+    var_mag = np.var(magnetization_array)
 
-#socebitibility
-...
+    autocorr = np.correlate(magnetization_array - mean_mag, magnetization_array - mean_mag, mode='full') / (var_mag * n)
+    return autocorr[n - 1:]
 
 # Run the parallel processing function
 average_magnetizations = Ising_model_T_parallel(T_range)
 
 # Call function for a specific temperature to get magnetization vs. step
-_ ,magnetization_steps = optimized_Ising_model(N, T_plus, 1, STEP, spin.copy())
+average_magnetization,magnetization_steps = optimized_Ising_model(N, T_plus, 1, STEP, spin.copy())
+auto_corr = autocorrelation(magnetization_steps)
 
 # Plotting results
 fig, axes = plt.subplots(1, 2, figsize=(12, 6))
@@ -84,4 +90,13 @@ axes[1].set_title(f'Magnetization vs. Step at T = {T_plus}')
 
 
 plt.tight_layout()
+plt.show()
+
+
+# Plotting the Autocorrelation
+plt.figure(figsize=(8, 4))
+plt.plot(auto_corr)
+plt.xlabel("Time lag (τ)")
+plt.ylabel("Autocorrelation")
+plt.title("Autocorrelation of Magnetization")
 plt.show()
