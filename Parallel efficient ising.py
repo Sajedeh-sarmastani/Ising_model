@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing
 from tqdm import tqdm
+import random
 
 # Parameters
 N = 50
@@ -64,6 +65,7 @@ def autocorrelation(magnetization_array):
 
     autocorr = np.correlate(magnetization_array - mean_mag, magnetization_array - mean_mag, mode='full') / (var_mag * n)
     return autocorr[n - 1:]
+
 
 # Run the parallel processing function
 average_magnetizations = Ising_model_T_parallel(T_range)

@@ -18,7 +18,7 @@ lattice_size = []
 for i in range(10)
     N = 25  (i + 1)
     spin = np.random.choice([1, -1], size=(N, N))
-    spin = Ising_model(N, T=T_plus, J=1, step=N2  100)
+    spin = Ising_model(N, T=T_plus, J=1, step=N*2  100)
     spin[spin == -1] = 0
     cluster_sizes = calculate_cluster_sizes(spin)
     avg_size = max_cluster_size(cluster_sizes)
